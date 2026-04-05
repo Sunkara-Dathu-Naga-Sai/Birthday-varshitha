@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Varshitha 💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #1a0026, #000);
+  color: white;
+}
+
+/* Intro screen */
+#intro {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* CENTERED CONTAINER (UPDATED ✅) */
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  width: 90%;
+  max-width: 600px;
+}
+
+/* Glow text */
+h1 {
+  font-size: 42px;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff4d6d; }
+  to { text-shadow: 0 0 30px #ff99ac, 0 0 40px #ff4d6d; }
+}
+
+/* Message */
+#message {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* Stars */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+  0%,100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* Hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="intro" onclick="startExperience()">
+  Tap to Open Your Surprise 🎁
+</div>
+
+<div class="container" style="display:none;" id="mainContent">
+  <h1>Happy Birthday Varshitha 🎂💖</h1>
+  <div id="message"></div>
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+function startExperience() {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("mainContent").style.display = "block";
+
+  document.getElementById("music").play();
+
+  confetti({
+    particleCount: 250,
+    spread: 120,
+    origin: { y: 0.6 }
+  });
+
+  typeMessage();
+}
+
+// Typewriter message
+function typeMessage() {
+  let text = `Dear Varshitha 💖
+
+In this world full of temporary people, you are my forever.
+
+You are not just my best friend… you are my safe place, my peace, and my happiness.
+
+Every laugh we shared, every moment we spent together… they are not just memories, they are emotions I will always carry.
+
+You understand me in ways no one else ever could.
+
+And no matter what happens in life, I promise — I will always stand by you.
+
+You are truly special, and you deserve all the love and happiness in this world.
+
+Happy Birthday to my favorite person… my best friend forever ❤️✨`;
+
+  let i = 0;
+  let speed = 35;
+  let box = document.getElementById("message");
+
+  function typing() {
+    if (i < text.length) {
+      if (text.charAt(i) === "\n") {
+        box.innerHTML += "<br><br>";
+      } else {
+        box.innerHTML += text.charAt(i);
+      }
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+
+  typing();
+}
+
+// Stars
+for (let i = 0; i < 100; i++) {
+  let star = document.createElement("div");
+  star.className = "star";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(star);
+}
+
+// Floating hearts
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random() * 25) + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}, 300);
+</script>
+
+</body>
+</html>
