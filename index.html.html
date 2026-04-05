@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Varshitha 🎉</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.container {
+  text-align: center;
+  max-width: 650px;
+  padding: 20px;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 42px;
+}
+
+#message {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+  min-height: 150px;
+}
+
+button {
+  margin-top: 25px;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #ff4d6d;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff4d6d;
+  color: white;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -10px;
+  color: rgba(255,255,255,0.6);
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Happy Birthday Varshitha 🎂💖</h1>
+
+  <div id="message">
+    Click below for a surprise...
+  </div>
+
+  <button onclick="startSurprise()">Open Your Message 💌</button>
+</div>
+
+<!-- Background Music -->
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+</audio>
+
+<!-- Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+function startSurprise() {
+  document.getElementById("music").play();
+
+  // Confetti
+  confetti({
+    particleCount: 200,
+    spread: 100,
+  });
+
+  // Typing message
+  let text = "Dear Varshitha,\n\n" +
+
+  "Some people come and go... but you stayed, and you became one of the most important parts of my life.\n\n" +
+
+  "You are not just my best friend, you are my peace in chaos, my smile in bad days, and my strength when I feel low.\n\n" +
+
+  "Every moment with you — whether it's laughter, silence, or even silly talks — means more than you will ever know.\n\n" +
+
+  "I don’t need to pretend around you, and that’s what makes our bond so special.\n\n" +
+
+  "No matter what happens in life, I promise I will always stand by you, support you, and never let you feel alone.\n\n" +
+
+  "You deserve all the happiness, love, and success in this world.\n\n" +
+
+  "Happy Birthday to the most amazing person and my forever best friend ❤️✨";
+
+  let i = 0;
+  let speed = 35;
+  let messageBox = document.getElementById("message");
+  messageBox.innerHTML = "";
+
+  function typeWriter() {
+    if (i < text.length) {
+      if (text.charAt(i) === "\n") {
+        messageBox.innerHTML += "<br><br>";
+      } else {
+        messageBox.innerHTML += text.charAt(i);
+      }
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+
+  typeWriter();
+}
+
+// Floating hearts generator
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random() * 25) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}, 300);
+</script>
+
+</body>
+</html>
